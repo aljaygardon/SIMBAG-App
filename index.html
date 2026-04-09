@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMBAG | Interactive</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+    <div id="auth-overlay" class="auth-screen">
+        <div class="auth-card">
+            <h1 class="logo-text">SIMBAG</h1>
+            <input type="text" id="userInput" placeholder="Username">
+            <button onclick="handleAuth()" class="btn-fb-blue">Log In</button>
+            <p onclick="toggleAuth()" class="link-text">Create Account</p>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="brand">SIMBAG</div>
+        <div class="header-icons">
+            <div class="icon-circle" onclick="toggleOverlay('notif-panel')">
+                <i class='bx bxs-bell'></i>
+                <span class="dot"></span>
+            </div>
+            <div class="icon-circle" onclick="toggleOverlay('msg-panel')">
+                <i class='bx bxs-envelope'></i>
+            </div>
+            <div class="icon-circle"><i class='bx bx-menu'></i></div>
+        </div>
+    </header>
+
+    <div id="notif-panel" class="side-panel">
+        <div class="panel-header"><h3>Notifications</h3><i class='bx bx-x' onclick="toggleOverlay('notif-panel')"></i></div>
+        <div class="p-item">Welcome to SIMBAG!</div>
+    </div>
+    <div id="msg-panel" class="side-panel">
+        <div class="panel-header"><h3>Messages</h3><i class='bx bx-x' onclick="toggleOverlay('msg-panel')"></i></div>
+        <div class="p-item">New message from Expert John.</div>
+    </div>
+
+    <main class="app-content">
+        <div class="search-wrap">
+            <i class='bx bx-search'></i>
+            <input type="text" id="mainSearch" placeholder="Search experts or jobs...">
+        </div>
+
+        <section id="home" class="page active">
+            <div class="fb-card composer" onclick="openPostModal()">
+                <div class="pfp-stub" id="miniPfp"></div>
+                <div class="fake-input">What's the job or question?</div>
+            </div>
+            <div id="feed-container">
+                <div class="fb-card post">
+                    <div class="post-head">
+                        <div class="pfp-stub"></div>
+                        <div><strong>Community</strong><br><small>Just now</small></div>
+                    </div>
+                    <p>Click the Plus icon below to create your own post!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="profile" class="page">
+            <div class="fb-card profile-hero">
+                <div class="pfp-main-wrap">
+                    <img src="https://via.placeholder.com/150" id="mainPhoto">
+                    <label for="pfpInp" class="cam-btn"><i class='bx bxs-camera'></i></label>
+                    <input type="file" id="pfpInp" hidden accept="image/*">
+                </div>
+                <h2 id="userNameDisplay">User Name</h2>
+                <div class="action-btns">
+                    <button class="btn-fb-blue">LIKE</button>
+                    <button class="btn-gray">FOLLOW</button>
+                </div>
+            </div>
+            <div class="fb-card">
+                <h3>Work Experience</h3>
+                <p class="empty">No experience listed.</p>
+                <div class="line"></div>
+                <h3>Skills</h3>
+                <p>Web Development</p>
+                <button class="logout-btn" onclick="location.reload()">Log Out</button>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" data-page="home"><i class='bx bxs-home'></i></div>
+        <div class="nav-item" data-page="favorites"><i class='bx bxs-bookmarks'></i></div>
+        <div class="plus-holder" onclick="openPostModal()">
+            <div class="plus-btn"><i class='bx bx-plus'></i></div>
+        </div>
+        <div class="nav-item" data-page="search"><i class='bx bx-search-alt'></i></div>
+        <div class="nav-item" data-page="profile"><i class='bx bxs-user-circle'></i></div>
+    </nav>
+
+    <div id="post-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header"><h3>Create Post</h3><i class='bx bx-x' onclick="closePostModal()"></i></div>
+            <textarea id="postText" placeholder="What's the job or question?"></textarea>
+            <button class="btn-fb-post" onclick="submitPost()">Post</button>
+        </div>
+    </div>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>
